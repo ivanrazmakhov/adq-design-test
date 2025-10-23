@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Barça Mobile Quiz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      background: linear-gradient(160deg, #00339F 0%, #E6007E 50%, #CF122D 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      overflow-x: hidden;
+      transition: background 0.6s ease;
+    }
+
+    .screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 90%;
+      max-width: 380px;
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    .active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .logo img {
+      width: 120px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .option-btn, .btn-download {
+      background: rgba(255,255,255,0.15);
+      border: 2px solid #fff;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 40px;
+      padding: 14px 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .option-btn:hover, .btn-download:hover {
+      background: #fff;
+      color: #00339F;
+      transform: scale(1.05);
+    }
+
+    .btn-download {
+      background: #fff;
+      color: #00339F;
+      font-weight: 600;
+      border: none;
+      padding: 14px 36px;
+      margin-top: 10px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    }
+
+    .btn-download:hover {
+      background: #00339F;
+      color: #fff;
+    }
+
+    .quiz-box {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      padding: 28px 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      width: 100%;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .phone {
+      margin-top: 40px;
+      width: 85%;
+      max-width: 360px;
+    }
+
+    footer {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 20px; }
+      .option-btn { font-size: 15px; padding: 12px 0; }
+      .btn-download { font-size: 15px; padding: 12px 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Screen 1 -->
+  <div class="screen active" id="screen1">
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg" alt="Barça Mobile Logo">
+    </div>
+    <div class="quiz-box">
+      <h1>Where are you going?</h1>
+      <div class="options">
+        <button class="option-btn" onclick="nextScreen(2)">Europe</button>
+        <button class="option-btn" onclick="nextScreen(2)">North America</button>
+        <button class="option-btn" onclick="nextScreen(2)">Latin America</button>
+        <button class="option-btn" onclick="nextScreen(2)">Other</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 2 -->
+  <div class="screen" id="screen2">
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg" alt="Barça Mobile Logo">
+    </div>
+    <div class="quiz-box">
+      <h1>How many days do you need unlimited internet?</h1>
+      <div class="options">
+        <button class="option-btn" onclick="nextScreen(3)">1 Day</button>
+        <button class="option-btn" onclick="nextScreen(3)">2–3 Days</button>
+        <button class="option-btn" onclick="nextScreen(3)">4–7 Days</button>
+        <button class="option-btn" onclick="nextScreen(3)">More than 7 Days</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 3 -->
+  <div class="screen" id="screen3">
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg" alt="Barça Mobile Logo">
+    </div>
+    <div class="quiz-box">
+      <h1>Have you used an e-SIM before?</h1>
+      <div class="options">
+        <button class="option-btn" onclick="nextScreen(4)">Yes</button>
+        <button class="option-btn" onclick="nextScreen(4)">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 4 -->
+  <div class="screen" id="screen4">
+    <h1>BARÇA MOBILE<br>GO GLOBAL, STAY CONNECTED</h1>
+    <p>Travel anywhere connected with your club.</p>
+    <button class="btn-download">Download now</button>
+    <img class="phone" src="https://upload.wikimedia.org/wikipedia/commons/3/3a/IPhone_14_Pro_vector.svg" alt="Phone Mockup">
+    <footer>© 2025 Barça Mobile</footer>
+  </div>
+
+  <script>
+    function nextScreen(num) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(`screen${num}`).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
